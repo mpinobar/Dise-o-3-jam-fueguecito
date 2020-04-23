@@ -17,8 +17,6 @@ public class Wind : ApproachingDanger
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print(collision.name);
-
         if(collision.tag == "Cursor")
         {
             currentHP -= collision.GetComponent<Cursor>().velocity.magnitude * (1 - (armadura * 0.01f));
