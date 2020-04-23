@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
+    public Vector3 velocity;
+    private Vector3 lastPosition;
+    private float inverseTime;
     public enum Cuadrante
     {
         TopRight, TopLeft, BottomRight, BottomLeft
@@ -19,17 +22,21 @@ public class Cursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inverseTime = 1 / Time.deltaTime;   
         cuadrantes = new List<Cuadrante>();
+        print(inverseTime);
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        velocity = transform.position - lastPosition;
+        velocity *= inverseTime;
         cursorCuadranteActual = ComprobarCuadrante();
         ComprobarCirculoHecho();
-        ComprobarCambioDeCuadrante();
-        
-
+        ComprobarCambioDeCuadrante();        
+        lastPosition = transform.position;
     }
 
     private void ComprobarCambioDeCuadrante()
@@ -77,7 +84,7 @@ public class Cursor : MonoBehaviour
                 if (!hayRepetidos)
                 {
                     //Se ha dado una vuelta completa
-                    print("Se ha dado una vuelta completa");
+                    OnCircleCompleted();
                     cuadrantes.Clear();
                     return true;
                 }
@@ -90,6 +97,10 @@ public class Cursor : MonoBehaviour
             return false;
         }
         
+
+    }
+    private void OnCircleCompleted()
+    {
 
     }
 
