@@ -52,7 +52,7 @@ public class ProtectionFromRain : TemporalSingleton<ProtectionFromRain>
 		m_protectionTransform.localScale = m_currentScale;
 	}
 
-	void DealDamageToProtection(float damage)
+	public void DealDamageToProtection(float damage)
 	{
 		m_currentLife = m_currentLife - Mathf.Abs(damage);
 		if (m_currentLife < 0)
