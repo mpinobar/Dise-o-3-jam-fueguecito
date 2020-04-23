@@ -24,7 +24,6 @@ public class Cursor : MonoBehaviour
     {
         inverseTime = 1 / Time.deltaTime;   
         cuadrantes = new List<Cuadrante>();
-        print(inverseTime);
     }
 
     // Update is called once per frame
@@ -101,7 +100,7 @@ public class Cursor : MonoBehaviour
     }
     private void OnCircleCompleted()
     {
-
+		ProtectionFromRain.Instance.HealProtection();
     }
 
     private Cuadrante ComprobarCuadrante()
