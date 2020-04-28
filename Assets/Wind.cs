@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wind : ApproachingDanger
 {
+    [SerializeField] float damageToCandle = 10;
     [SerializeField] float windHP = 100;
     [SerializeField] float armadura = 25;
     public float currentHP;
@@ -30,6 +31,15 @@ public class Wind : ApproachingDanger
             {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Candle")
+        {
+            collision.transform.root.GetComponent<CandleBehaviour>().DealDamageToCandle(damageToCandle);
+            Destroy(gameObject);
         }
     }
 }
