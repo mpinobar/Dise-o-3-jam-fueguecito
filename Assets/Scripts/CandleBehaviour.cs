@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CandleBehaviour : MonoBehaviour
+public class CandleBehaviour : TemporalSingleton<CandleBehaviour>
 {
 	[SerializeField] private float m_maxLife = 0f;
 	[SerializeField] private float m_lifeDepleteRatePerSecond = 0f;
@@ -70,7 +70,7 @@ public class CandleBehaviour : MonoBehaviour
 		}
 	}
 
-	void DealDamageToCandle(float damage)
+	public void DealDamageToCandle(float damage)
 	{
 		m_currentLife = m_currentLife - Mathf.Abs(damage);
 		if(m_currentLife < 0)
@@ -79,7 +79,7 @@ public class CandleBehaviour : MonoBehaviour
 		}
 	}
 
-	void HealCandle(float healAmmount)
+	public void HealCandle(float healAmmount)
 	{
 		m_currentLife = m_currentLife + Mathf.Abs(healAmmount);
 		if(m_currentLife > m_maxLife)
