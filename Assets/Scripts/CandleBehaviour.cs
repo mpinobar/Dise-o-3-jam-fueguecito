@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CandleBehaviour : MonoBehaviour
+public class CandleBehaviour : TemporalSingleton<CandleBehaviour>
 {
 	[SerializeField] private float m_maxLife = 0f;
 	[SerializeField] private float m_lifeDepleteRatePerSecond = 0f;
