@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class RainScript : MonoBehaviour
 {
-    [SerializeField] float damagePerHit = 1;
+    [SerializeField] float damagePerHit = 10;
+    [SerializeField] float puntos = 10;
     ParticleSystem ps;
-    [SerializeField] ProtectionFromRain protection;
-    // these lists are used to contain the particles which match
-    // the trigger conditions each frame.
-    List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();    
 
-    void OnEnable()
+    List<ParticleCollisionEvent> pc;
+    List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
+
+    private void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        pc = new List<ParticleCollisionEvent>();
     }
 
-    void OnParticleTrigger()
+    public void OnParticleCollision(GameObject other)
     {
-        // get the particles which matched the trigger conditions this frame
-        int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
-
-        // iterate through the particles which entered the trigger and make them red
-        for (int i = 0; i < numEnter; i++)
+        if (other.gameObject.GetComponent<ProtectionFromRain>() != null)
         {
-            ParticleSystem.Particle p = enter[i];
-            p.startColor = new Color32(255, 0, 0, 0);            
-            protection.DealDamageToProtection(damagePerHit);
-            enter[i] = p;
+            other.gameObject.GetComponent<ProtectionFromRain>().DealDamageToProtection(damagePerHit);
+        }
+        else if (other.gameObject.GetComponent<CandleBehaviour>() != null)
+        {
+            other.gameObject.GetComponent<CandleBehaviour>().DealDamageToCandle(damagePerHit);
         }
 
-        // re-assign the modified particles back into the particle system
-        ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
+        Score.Instance.AñadirPuntos(puntos);
     }
+    
 }
