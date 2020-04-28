@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wind : ApproachingDanger
 {
+    [SerializeField] float puntos;
     [SerializeField] float damageToCandle = 10;
     [SerializeField] float windHP = 100;
     [SerializeField] float armadura = 25;
@@ -29,6 +30,7 @@ public class Wind : ApproachingDanger
             }
             else
             {
+                Score.Instance.AñadirPuntos(puntos);
                 Destroy(gameObject);
             }
         }
