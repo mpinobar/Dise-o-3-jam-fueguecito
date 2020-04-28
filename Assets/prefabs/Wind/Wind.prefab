@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   acceleration: 0.5
+  puntos: 25
+  damageToCandle: 10
   windHP: 100
   armadura: 75
   currentHP: 0

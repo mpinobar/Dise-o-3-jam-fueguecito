@@ -76,6 +76,7 @@ public class CandleBehaviour : MonoBehaviour
 		if(m_currentLife < 0)
 		{
 			m_currentLife = 0;
+            Score.Instance.GameEnd();
 		}
 	}
 

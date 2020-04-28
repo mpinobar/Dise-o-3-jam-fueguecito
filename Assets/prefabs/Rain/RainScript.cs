@@ -5,6 +5,7 @@ using UnityEngine;
 public class RainScript : MonoBehaviour
 {
     [SerializeField] float damagePerHit = 10;
+    [SerializeField] float puntos = 10;
     ParticleSystem ps;
 
     List<ParticleCollisionEvent> pc;
@@ -17,9 +18,7 @@ public class RainScript : MonoBehaviour
     }
 
     public void OnParticleCollision(GameObject other)
-    {     
-     
-
+    {
         if (other.gameObject.GetComponent<ProtectionFromRain>() != null)
         {
             other.gameObject.GetComponent<ProtectionFromRain>().DealDamageToProtection(damagePerHit);
@@ -28,7 +27,8 @@ public class RainScript : MonoBehaviour
         {
             other.gameObject.GetComponent<CandleBehaviour>().DealDamageToCandle(damagePerHit);
         }
-        //Destroy(gameObject);
+
+        Score.Instance.AñadirPuntos(puntos);
     }
     
 }
