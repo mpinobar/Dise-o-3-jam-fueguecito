@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   acceleration: 0.5
+  abanicoPrefab: {fileID: 2339741901528226619, guid: 89e2a95f3993e024f8549797eb2647e0,
+    type: 3}
   puntos: 25
   damageToCandle: 10
   windHP: 100
