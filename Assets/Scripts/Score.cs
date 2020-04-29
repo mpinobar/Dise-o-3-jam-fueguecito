@@ -17,37 +17,37 @@ public class Score : PersistentSingleton<Score>
 
     private void Start()
     {
-		canvasPuntuacion.SetActive(false);
-		listaPuntos = new List<float>();
+		//canvasPuntuacion.SetActive(false);
+		//listaPuntos = new List<float>();
     }
 
     public void AñadirPuntos(float p)
     {
-        puntos += p;
+        //puntos += p;
     }
 
     // Update is called once per frame
     void Update()
     {
-        tiempo += Time.deltaTime;
-        if(tiempo >= 1)
-        {
-            segundos++;
-            tiempo = 0;
-            if(segundos >= 60)
-            {
-                minutos++;
-                segundos = 0;
-            }
-        }
-		txt.text = "Puntos: " + puntos;
+        //tiempo += Time.deltaTime;
+        //if(tiempo >= 1)
+        //{
+        //    segundos++;
+        //    tiempo = 0;
+        //    if(segundos >= 60)
+        //    {
+        //        minutos++;
+        //        segundos = 0;
+        //    }
+        //}
+		//txt.text = "Puntos: " + puntos;
 	}
 
     internal void GameEnd()
     {
-		listaPuntos.Add(puntos);
-		Time.timeScale = 0;
-        canvasPuntuacion.SetActive(true);
+		//listaPuntos.Add(puntos);
+		//Time.timeScale = 0;
+  //      canvasPuntuacion.SetActive(true);
         //canvasPuntuacion.GetComponentInChildren<Text>().text =
     }
 }

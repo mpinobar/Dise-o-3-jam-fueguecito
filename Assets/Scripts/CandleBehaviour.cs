@@ -78,6 +78,11 @@ public class CandleBehaviour : TemporalSingleton<CandleBehaviour>
 			m_currentLife = 0;
             Score.Instance.GameEnd();
 		}
+
+		if(damage > 1)
+		{
+			print(damage);
+		}
 	}
 
 	public void HealCandle(float healAmmount)

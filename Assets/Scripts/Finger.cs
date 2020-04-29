@@ -49,6 +49,7 @@ public class Finger : MonoBehaviour
 			{
 				m_currentDestination = m_startingPos;
 				m_cmpSpriteRenderer.color = m_color;
+				CandleBehaviour.Instance.DealDamageToCandle(m_damage);
 				m_isBurnt = true;
 			}			
 		}		
@@ -68,9 +69,18 @@ public class Finger : MonoBehaviour
 			{
 				m_isBurnt = true;
 				m_currentDestination = m_startingPos;
-				CandleBehaviour.Instance.DealDamageToCandle(m_damage);
 				m_cmpSpriteRenderer.color = m_red;
 			}
+		}
+	}
+
+	public void ScareFinger()
+	{
+		if (!m_isBurnt)
+		{
+			m_currentDestination = m_startingPos;
+			m_isBurnt = true;
+			m_cmpSpriteRenderer.color = m_red;
 		}
 	}
 }
