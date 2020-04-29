@@ -21,6 +21,7 @@ public class Score : TemporalSingleton<Score>
            
     private void Start()
     {
+
         GameStart();
         if(listaPuntos == null)
         {
@@ -35,6 +36,7 @@ public class Score : TemporalSingleton<Score>
         puntosTexto = canvasPuntuacion.GetComponentInChildren<Text>();
         canvasPuntuacion.SetActive(false);
         gameEnded = false;
+
     }
 
     public void AñadirPuntos(float p)
@@ -57,6 +59,7 @@ public class Score : TemporalSingleton<Score>
                 segundos = 0;
             }
         }
+
        
         txt.text = "Puntos: " + puntos;
         canvasPuntuacion.SetActive(gameEnded);
@@ -84,5 +87,6 @@ public class Score : TemporalSingleton<Score>
             }
             Invoke("RestartGame", timeUntilRestart);
         }        
+
     }
 }
