@@ -12,8 +12,7 @@ public class PersistentSingleton<T> : MonoBehaviour	where T : Component
 			{
 				_instance = FindObjectOfType<T> ();
 				if (_instance == null)
-				{
-					
+				{					
 					GameObject obj = new GameObject ();
 					_instance = obj.AddComponent<T> ();
 				}
@@ -30,5 +29,9 @@ public class PersistentSingleton<T> : MonoBehaviour	where T : Component
 			_instance = this as T;
 			
 		}
-	}
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

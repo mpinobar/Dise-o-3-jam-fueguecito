@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wind : ApproachingDanger
 {
+    [SerializeField] GameObject abanicoPrefab;
+    GameObject abanico;
     [SerializeField] float puntos;
     [SerializeField] float damageToCandle = 10;
     [SerializeField] float windHP = 100;
@@ -21,7 +23,8 @@ public class Wind : ApproachingDanger
     {
         if(collision.tag == "Cursor")
         {
-            currentHP -= collision.GetComponent<Cursor>().velocity.magnitude * (1 - (armadura * 0.01f));
+            abanico.transform.position = collision.transform.position;
+            currentHP -= Mathf.Abs(collision.GetComponent<Cursor>().velocity.y) * (1 - (armadura * 0.01f));
             if(currentHP > 0)
             {
                 Color c = spr.color;
@@ -31,6 +34,7 @@ public class Wind : ApproachingDanger
             else
             {
                 Score.Instance.AñadirPuntos(puntos);
+                Destroy(abanico);
                 Destroy(gameObject);
             }
         }
@@ -42,6 +46,21 @@ public class Wind : ApproachingDanger
         {
             collision.transform.root.GetComponent<CandleBehaviour>().DealDamageToCandle(damageToCandle);
             Destroy(gameObject);
+        }
+        if (collision.tag == "Cursor")
+        {
+            if(abanico != null)
+            {
+                abanico.SetActive(true);
+            }else
+            abanico = Instantiate(abanicoPrefab, collision.transform.position, Quaternion.identity);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Cursor")
+        {
+            abanico.SetActive(false);
         }
     }
 }
