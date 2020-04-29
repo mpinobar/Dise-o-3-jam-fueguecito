@@ -75,12 +75,12 @@ public class Score : TemporalSingleton<Score>
         {
             gameEnded = true;
             listaPuntos.Add(puntos);
-
+            listaPuntos.Sort();
             canvasPuntuacion.SetActive(true);
             puntosTexto.text = "Puntuaciones";
-            for (int i = 0; i < listaPuntos.Count; i++)
+            for (int i = listaPuntos.Count-1; i >= 0; i--)
             {
-                puntosTexto.text += "\n " + (i + 1) +". " + listaPuntos[i];
+                puntosTexto.text += "\n " + (listaPuntos.Count - i) +". " + listaPuntos[i];
             }
             Invoke("RestartGame", timeUntilRestart);
         }        
