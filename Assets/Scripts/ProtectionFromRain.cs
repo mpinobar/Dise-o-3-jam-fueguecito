@@ -42,6 +42,11 @@ public class ProtectionFromRain : TemporalSingleton<ProtectionFromRain>
 		if (m_lifePercentage < 0)
 		{
 			m_lifePercentage = 0;
+			this.GetComponent<CircleCollider2D>().enabled = false;
+		}
+		else
+		{
+			this.GetComponent<CircleCollider2D>().enabled = true;
 		}
 
 		float currentSizeX = m_lifePercentage * m_maxScale.x;
