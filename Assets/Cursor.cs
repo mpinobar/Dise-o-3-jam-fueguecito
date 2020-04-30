@@ -101,6 +101,7 @@ public class Cursor : MonoBehaviour
     private void OnCircleCompleted()
     {
 		ProtectionFromRain.Instance.HealProtection();
+        GetComponent<AudioSource>().Play();
     }
 
     private Cuadrante ComprobarCuadrante()
