@@ -63,4 +63,9 @@ public class Wind : ApproachingDanger
             abanico.SetActive(false);
         }
     }
+
+	public void StopHammerTime()
+	{
+		Destroy(this.gameObject);
+	}
 }

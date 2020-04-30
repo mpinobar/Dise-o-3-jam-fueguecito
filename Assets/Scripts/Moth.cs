@@ -41,34 +41,39 @@ public class Moth : MonoBehaviour
 
 		if (Input.GetMouseButtonUp(0))
 		{
-			m_grabbed = false;
-
-			Collider2D[] hit = Physics2D.OverlapCircleAll(this.transform.position, m_radiusMothInteract);
-
-			for (int i = 0; i < hit.Length; i++)
+			if (m_grabbed)
 			{
-				if (hit[i].gameObject.GetComponent<CandleBehaviour>() != null)
-				{
-					hit[i].gameObject.GetComponent<CandleBehaviour>().HealCandle(m_healAmmountToCandle);
-					Destroy(this.gameObject);
-					break;
-				}
-				else if (hit[i].gameObject.GetComponent<Finger>() != null)
-				{
-					hit[i].gameObject.GetComponent<Finger>().ScareFinger();
-					Destroy(this.gameObject);
-					break;
-				}
-				else if (hit[i].gameObject.GetComponent<Spawner>() != null)
-				{
-					Destroy(this.gameObject);
-					break;
+				m_grabbed = false;
 
+				Collider2D[] hit = Physics2D.OverlapCircleAll(this.transform.position, m_radiusMothInteract);
+
+				for (int i = 0; i < hit.Length; i++)
+				{
+					if (hit[i].gameObject.GetComponent<CandleBehaviour>() != null)
+					{
+						hit[i].gameObject.GetComponent<CandleBehaviour>().HealCandle(m_healAmmountToCandle);
+						Destroy(this.gameObject);
+						break;
+					}
+					else if (hit[i].gameObject.GetComponent<Finger>() != null)
+					{
+						hit[i].gameObject.GetComponent<Finger>().ScareFinger();
+						Destroy(this.gameObject);
+						break;
+					}
+					else if (hit[i].gameObject.GetComponent<CloudCityMadafacas>() != null)
+					{
+						hit[i].gameObject.GetComponent<CloudCityMadafacas>().StopRain();
+						Destroy(this.gameObject);
+						break;
+
+					}
+					else if (hit[i].gameObject.GetComponent<Wind>() != null)
+					{
+						hit[i].gameObject.GetComponent<Wind>().StopHammerTime();
+						break;
+					}
 				}
-				//else if (hit[i].gameObject.GetComponent<>() != null)
-				//{
-				//  break;
-				//}
 			}
 		}
 
@@ -88,38 +93,4 @@ public class Moth : MonoBehaviour
 			this.transform.position = new Vector3(mouse.x, mouse.y, this.transform.position.z);
 		}
     }
-
-	
-	private void OnMouseUp()
-	{
-		m_grabbed = false;
-
-		Collider2D[] hit = Physics2D.OverlapCircleAll(this.transform.position,m_radiusMothInteract);
-
-		for (int i = 0; i < hit.Length; i++)
-		{
-			if (hit[i].gameObject.GetComponent<CandleBehaviour>() != null)
-			{
-				hit[i].gameObject.GetComponent<CandleBehaviour>().HealCandle(m_healAmmountToCandle);
-				Destroy(this.gameObject);
-				break;
-			}
-			else if (hit[i].gameObject.GetComponent<Finger>() != null)
-			{
-				hit[i].gameObject.GetComponent<Finger>().ScareFinger();
-				Destroy(this.gameObject);
-				break;
-			}
-			else if(hit[i].gameObject.GetComponent<Spawner>() != null)
-			{
-				Destroy(this.gameObject);
-			  break;
-			
-			}
-			//else if (hit[i].gameObject.GetComponent<>() != null)
-			//{
-			//  break;
-			//}
-		}
-	}
 }
