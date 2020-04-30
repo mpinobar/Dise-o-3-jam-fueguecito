@@ -48,7 +48,6 @@ public class Moth : MonoBehaviour
             {
                 Cursor.grabbedMoth = null;
             }
-			Collider2D[] hit = Physics2D.OverlapCircleAll(this.transform.position, m_radiusMothInteract);
 
 			if (m_grabbed)
 			{
