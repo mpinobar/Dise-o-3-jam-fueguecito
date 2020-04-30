@@ -21,6 +21,5 @@ public class FingerSpawner : TemporalSingleton<FingerSpawner>
 
 		GameObject newFinger = Instantiate(m_fingerPrefab, m_fingerSpawningAreas[index].GenerateSpawnLocation(), Quaternion.identity);
 		newFinger.GetComponent<Finger>().SetUpLife(1);
-		print("Set up life difficulty increase");
 	}
 }

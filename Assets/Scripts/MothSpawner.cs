@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MothSpawner : MonoBehaviour
+public class MothSpawner : TemporalSingleton<MothSpawner>
 {
 	[SerializeField] private GameObject m_prefabMoth = null;
 	private Vector3 m_min = Vector3.zero;

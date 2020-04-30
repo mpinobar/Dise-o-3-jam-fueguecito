@@ -39,7 +39,6 @@ public class Moth : MonoBehaviour
 			Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			this.transform.position = new Vector3(mouse.x, mouse.y, this.transform.position.z);
 		}
-		print(m_grabbed);
     }
 
 	private void OnMouseDown()
@@ -79,7 +78,5 @@ public class Moth : MonoBehaviour
 			//  break;
 			//}
 		}
-
-
 	}
 }
