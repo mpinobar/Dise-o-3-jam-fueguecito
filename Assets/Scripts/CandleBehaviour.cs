@@ -81,7 +81,7 @@ public class CandleBehaviour : TemporalSingleton<CandleBehaviour>
 
 		if(damage > 1)
 		{
-			print(damage);
+			//print(damage);
 		}
 	}
 
