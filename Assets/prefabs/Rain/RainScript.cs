@@ -8,22 +8,74 @@ public class RainScript : TemporalSingleton<RainScript>
     [SerializeField] float puntos = 10;
     ParticleSystem ps;
 
+	[SerializeField] private float m_cloudSpeed = 0f;
+
+	[SerializeField] private Transform m_nubeSprite = null;
+	[SerializeField] private Transform m_endPosition = null;
+	private Vector3 m_endPositionV3 = Vector3.zero;
+	private Vector3 m_startPositionV3 = Vector3.zero;
+	private enum CloudState { None, MovingDown, MovingUp, Raining}
+	private CloudState m_currentSate = CloudState.None;
+
+
+	private float m_rainDuration = 0f;
+
+
     List<ParticleCollisionEvent> pc;
     List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
 
     private void Start()
     {
+		m_startPositionV3 = m_nubeSprite.position;
+		m_endPositionV3 = m_endPosition.position;
         ps = GetComponent<ParticleSystem>();
         pc = new List<ParticleCollisionEvent>();
     }
 
-	public void SpawnRain()
+	private void Update()
 	{
-		ps.Play();
+		switch (m_currentSate)
+		{
+			case CloudState.None:
+				break;
+			case CloudState.MovingDown:
+				{
+					m_nubeSprite.position = Vector3.MoveTowards(m_nubeSprite.position, m_endPositionV3, m_cloudSpeed * Time.deltaTime);
+					if (Vector3.Distance(m_nubeSprite.position, m_startPositionV3) == 0)
+					{
+						m_currentSate = CloudState.Raining;
+						ps.Play();
+					}
+				}
+				break;
+			case CloudState.MovingUp:
+				{
+					m_nubeSprite.position = Vector3.MoveTowards(m_nubeSprite.position, m_startPositionV3, m_cloudSpeed * Time.deltaTime);
+					if(Vector3.Distance(m_nubeSprite.position, m_startPositionV3) == 0)
+					{
+						m_currentSate = CloudState.None;
+					}
+				}
+				break;
+			case CloudState.Raining:
+				{
+					m_rainDuration = m_rainDuration - Time.deltaTime;
+					if(m_rainDuration <= 0)
+					{
+						m_currentSate = CloudState.MovingUp;
+					}
+				}
+				break;
+			default:
+				break;
+		}
 	}
-	public void StopSpawningRaing()
+
+	public void SpawnRain(float delay, float duration)
 	{
-		ps.Stop();
+		m_cloudSpeed = Vector3.Distance(m_nubeSprite.position, m_startPositionV3) / delay;
+		m_currentSate = CloudState.MovingDown;
+		m_rainDuration = duration;
 	}
 
     public void OnParticleCollision(GameObject other)
