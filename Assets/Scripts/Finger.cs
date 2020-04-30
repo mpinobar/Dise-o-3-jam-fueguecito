@@ -89,6 +89,7 @@ public class Finger : MonoBehaviour
 	{
 		if (!m_isBurnt)
 		{
+            GetComponent<AudioSource>().Play();
 			m_currentDestination = m_startingPos;
 			m_isBurnt = true;
 			m_cmpSpriteRenderer.color = m_red;

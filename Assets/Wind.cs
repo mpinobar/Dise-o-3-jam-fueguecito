@@ -23,6 +23,7 @@ public class Wind : ApproachingDanger
     {
         if(collision.tag == "Cursor")
         {
+
             if(Cursor.grabbedMoth != null)
             {
                 abanico.SetActive(false);
@@ -31,7 +32,9 @@ public class Wind : ApproachingDanger
             {
                 abanico.SetActive(true);
             }
-            abanico.transform.position = collision.transform.position;
+
+            abanico.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y,0);
+
             currentHP -= Mathf.Abs(collision.GetComponent<Cursor>().velocity.y) * (1 - (armadura * 0.01f));
             if(currentHP > 0)
             {
@@ -71,4 +74,9 @@ public class Wind : ApproachingDanger
             abanico.SetActive(false);
         }
     }
+
+	public void StopHammerTime()
+	{
+		Destroy(this.gameObject);
+	}
 }
