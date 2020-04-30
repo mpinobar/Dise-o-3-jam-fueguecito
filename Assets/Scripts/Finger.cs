@@ -83,4 +83,8 @@ public class Finger : MonoBehaviour
 			m_cmpSpriteRenderer.color = m_red;
 		}
 	}
+	public void SetUpSpeed(float duration)
+	{
+		m_speed = Vector3.Distance(this.transform.position, m_currentDestination + new Vector3(0, m_yOffset, 0)) / duration;
+	}
 }

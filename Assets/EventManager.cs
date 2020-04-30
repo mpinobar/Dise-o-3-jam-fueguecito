@@ -45,11 +45,6 @@ public class EventManager : TemporalSingleton<EventManager>
         }
 
         duracionEvento *= (1 - porcentajeAumentoFrecuenciaPorEvento * 0.01f);
-        if (eventoActual == 0)
-        {
-            print(RainScript.Instance.name);
-            RainScript.Instance.StopSpawningRaing();
-        }
         int aux = eventoActual;
         while (eventoActual == aux)
         {
