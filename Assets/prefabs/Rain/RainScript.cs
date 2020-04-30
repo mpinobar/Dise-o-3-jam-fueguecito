@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainScript : MonoBehaviour
+public class RainScript : TemporalSingleton<RainScript>
 {
     [SerializeField] float damagePerHit = 10;
     [SerializeField] float puntos = 10;
@@ -16,6 +16,15 @@ public class RainScript : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
         pc = new List<ParticleCollisionEvent>();
     }
+
+	public void SpawnRain()
+	{
+		ps.Play();
+	}
+	public void StopSpawningRaing()
+	{
+		ps.Stop();
+	}
 
     public void OnParticleCollision(GameObject other)
     {
