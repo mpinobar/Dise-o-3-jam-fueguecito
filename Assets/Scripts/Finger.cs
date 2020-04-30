@@ -8,7 +8,7 @@ public class Finger : MonoBehaviour
 	[SerializeField] private float m_burntSpeedModifier = 0f;
 	[SerializeField] private float m_yOffset = 0f;
 	[SerializeField] private float m_stoppingDistance = 0f;
-
+    [SerializeField] private float points = 30;
 	[SerializeField] private Sprite m_burntSprite = null;
 	private SpriteRenderer m_cmpSpriteRenderer = null;
 	
@@ -92,6 +92,7 @@ public class Finger : MonoBehaviour
 			m_currentDestination = m_startingPos;
 			m_isBurnt = true;
 			m_cmpSpriteRenderer.color = m_red;
+            Score.Instance.AñadirPuntos(points);
 		}
 	}
 	public void SetUpSpeed(float duration)

@@ -61,11 +61,8 @@ public class RainScript : TemporalSingleton<RainScript>
 			case CloudState.Raining:
 				{
 					m_rainDuration = m_rainDuration - Time.deltaTime;
-                    print("RAINING");
                     if (m_rainDuration <= 0)
 					{
-                        print("STOP RAINING");
-
                         m_currentSate = CloudState.MovingUp;
 						ps.Stop();
 					}
