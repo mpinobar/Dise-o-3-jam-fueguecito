@@ -41,7 +41,7 @@ public class RainScript : TemporalSingleton<RainScript>
 			case CloudState.MovingDown:
 				{
 					m_nubeSprite.position = Vector3.MoveTowards(m_nubeSprite.position, m_endPositionV3, m_cloudSpeed * Time.deltaTime);
-					if (Vector3.Distance(m_nubeSprite.position, m_startPositionV3) == 0)
+					if (Vector3.Distance(m_nubeSprite.position, m_endPositionV3) <= 0.2f)
 					{
 						m_currentSate = CloudState.Raining;
 						ps.Play();
@@ -51,8 +51,9 @@ public class RainScript : TemporalSingleton<RainScript>
 			case CloudState.MovingUp:
 				{
 					m_nubeSprite.position = Vector3.MoveTowards(m_nubeSprite.position, m_startPositionV3, m_cloudSpeed * Time.deltaTime);
-					if(Vector3.Distance(m_nubeSprite.position, m_startPositionV3) == 0)
+					if(Vector3.Distance(m_nubeSprite.position, m_startPositionV3) <= 0.2f)
 					{
+
 						m_currentSate = CloudState.None;
 					}
 				}
@@ -60,9 +61,12 @@ public class RainScript : TemporalSingleton<RainScript>
 			case CloudState.Raining:
 				{
 					m_rainDuration = m_rainDuration - Time.deltaTime;
-					if(m_rainDuration <= 0)
+                    print("RAINING");
+                    if (m_rainDuration <= 0)
 					{
-						m_currentSate = CloudState.MovingUp;
+                        print("STOP RAINING");
+
+                        m_currentSate = CloudState.MovingUp;
 						ps.Stop();
 					}
 				}
@@ -74,7 +78,7 @@ public class RainScript : TemporalSingleton<RainScript>
 
 	public void SpawnRain(float delay, float duration)
 	{
-		m_cloudSpeed = Vector3.Distance(m_nubeSprite.position, m_startPositionV3) / delay;
+		m_cloudSpeed = Vector3.Distance(m_nubeSprite.position, m_endPositionV3) / delay;
 		m_currentSate = CloudState.MovingDown;
 		m_rainDuration = duration;
 
