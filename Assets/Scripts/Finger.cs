@@ -23,6 +23,8 @@ public class Finger : MonoBehaviour
 	[SerializeField] private Color m_color = Color.white;
 	[SerializeField] private Color m_red = Color.red;
 
+	[SerializeField] private LayerMask m_layers;
+
 	private void Awake()
 	{
 		m_startingPos = this.transform.position;
@@ -52,27 +54,36 @@ public class Finger : MonoBehaviour
 				CandleBehaviour.Instance.DealDamageToCandle(m_damage);
 				m_isBurnt = true;
 			}			
-		}		
-    }
+		}
+
+		if (Input.GetMouseButtonDown(0))
+		{
+			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1000f, m_layers);
+			if(hit.collider != null)
+			{
+				if (hit.collider.gameObject == this.gameObject)
+				{
+					if (!m_isBurnt)
+					{
+						m_currentLife = m_currentLife - 1;
+						if (m_currentLife <= 0)
+						{
+							m_isBurnt = true;
+							m_currentDestination = m_startingPos;
+							m_cmpSpriteRenderer.color = m_red;
+						}
+					}
+				}
+			}
+		}
+	}
 
 	public void SetUpLife(int LifeIncrease)
 	{
 		m_currentLife = m_maxMinLife + LifeIncrease;
 	}
 
-	private void OnMouseDown()
-	{
-		if (!m_isBurnt)
-		{
-			m_currentLife = m_currentLife - 1;
-			if (m_currentLife <= 0)
-			{
-				m_isBurnt = true;
-				m_currentDestination = m_startingPos;
-				m_cmpSpriteRenderer.color = m_red;
-			}
-		}
-	}
+	
 
 	public void ScareFinger()
 	{

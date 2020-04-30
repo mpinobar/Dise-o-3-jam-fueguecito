@@ -81,7 +81,6 @@ public class RainScript : TemporalSingleton<RainScript>
 		m_cloudSpeed = Vector3.Distance(m_nubeSprite.position, m_endPositionV3) / delay;
 		m_currentSate = CloudState.MovingDown;
 		m_rainDuration = duration;
-
 	}
 
     public void OnParticleCollision(GameObject other)

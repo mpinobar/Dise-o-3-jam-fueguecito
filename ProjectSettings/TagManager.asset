@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Candle
   - Cursor
+  - FinalCanvas
+  - Points
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Viento
   - Vela
   - Moth
-  - 
+  - Finger
   - 
   - 
   - 
