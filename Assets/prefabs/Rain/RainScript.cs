@@ -23,6 +23,10 @@ public class RainScript : TemporalSingleton<RainScript>
 	}
 	public void StopSpawningRaing()
 	{
+        if(ps == null)
+        {
+            ps = GetComponent<ParticleSystem>();
+        }
 		ps.Stop();
 	}
 
