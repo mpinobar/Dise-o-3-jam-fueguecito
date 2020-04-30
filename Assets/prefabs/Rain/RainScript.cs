@@ -17,7 +17,7 @@ public class RainScript : TemporalSingleton<RainScript>
         pc = new List<ParticleCollisionEvent>();
     }
 
-	public void SpawnRain()
+	public void SpawnRain(float delay, float duration)
 	{
 		ps.Play();
 	}
@@ -25,7 +25,7 @@ public class RainScript : TemporalSingleton<RainScript>
 	{
         if(ps == null)
         {
-            ps = GetComponent<ParticleSystem>();
+            ps = GetComponent<ParticleSystem>()
         }
 		ps.Stop();
 	}

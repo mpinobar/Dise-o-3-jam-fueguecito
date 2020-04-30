@@ -15,7 +15,7 @@ public class FingerSpawner : TemporalSingleton<FingerSpawner>
 		}
 	}
 
-	public void SpawnFinger(float lifeIncreaseForDifficulty)
+	public void SpawnFinger(float lifeIncreaseForDifficulty, float duration)
 	{
 		int index = Random.Range(0, m_fingerSpawningAreas.Count);
 
