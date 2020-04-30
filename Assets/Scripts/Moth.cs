@@ -35,6 +35,7 @@ public class Moth : MonoBehaviour
 				if (hit.collider.gameObject == this.gameObject)
 				{
 					m_grabbed = true;
+                    Cursor.grabbedMoth = this;
 				}
 			}
 		}
@@ -42,7 +43,10 @@ public class Moth : MonoBehaviour
 		if (Input.GetMouseButtonUp(0))
 		{
 			m_grabbed = false;
-
+            if(Cursor.grabbedMoth == this)
+            {
+                Cursor.grabbedMoth = null;
+            }
 			Collider2D[] hit = Physics2D.OverlapCircleAll(this.transform.position, m_radiusMothInteract);
 
 			for (int i = 0; i < hit.Length; i++)
@@ -63,7 +67,6 @@ public class Moth : MonoBehaviour
 				{
 					Destroy(this.gameObject);
 					break;
-
 				}
 				//else if (hit[i].gameObject.GetComponent<>() != null)
 				//{

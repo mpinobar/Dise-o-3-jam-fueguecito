@@ -10,6 +10,7 @@ public class Cursor : MonoBehaviour
     public Vector3 velocity;
     private Vector3 lastPosition;
     private float inverseTime;
+    public static Moth grabbedMoth;
     public enum Cuadrante
     {
         TopRight, TopLeft, BottomRight, BottomLeft
