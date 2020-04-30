@@ -66,11 +66,11 @@ public class Moth : MonoBehaviour
 						hit[i].gameObject.GetComponent<CloudCityMadafacas>().StopRain();
 						Destroy(this.gameObject);
 						break;
-
 					}
 					else if (hit[i].gameObject.GetComponent<Wind>() != null)
 					{
 						hit[i].gameObject.GetComponent<Wind>().StopHammerTime();
+						Destroy(this.gameObject);
 						break;
 					}
 				}
