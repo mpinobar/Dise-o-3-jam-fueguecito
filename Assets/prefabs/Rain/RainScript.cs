@@ -63,6 +63,7 @@ public class RainScript : TemporalSingleton<RainScript>
 					if(m_rainDuration <= 0)
 					{
 						m_currentSate = CloudState.MovingUp;
+						ps.Stop();
 					}
 				}
 				break;
