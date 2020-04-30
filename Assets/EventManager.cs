@@ -7,13 +7,17 @@ public class EventManager : TemporalSingleton<EventManager>
 {
     [SerializeField] float duracionEvento = 3;
     float delayEvento;
+    [SerializeField] float tiempoEntreEventos = 2f;
     [SerializeField] int frecuenciaAparicionPolilla = 2;
     [SerializeField] float porcentajeAumentoFrecuenciaPorEvento = 10f;
+    [SerializeField] float tiempoMinimo = 1f;
     int numEvento;
     int eventoActual;
 
     float temporizador;
+    float temporizadorEspera;
 
+    bool esperandoEntreEventos;
 
     // Start is called before the first frame update
     void Start()
@@ -21,18 +25,33 @@ public class EventManager : TemporalSingleton<EventManager>
         temporizador = duracionEvento;
         delayEvento = duracionEvento * 0.33f;
         CambiarEvento();
+        esperandoEntreEventos = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        temporizador -= Time.deltaTime;
-        if(temporizador <= 0)
+        if (!esperandoEntreEventos)
         {
-            CambiarEvento();
-            temporizador = duracionEvento;
-            delayEvento = duracionEvento * 0.33f;
+            temporizador -= Time.deltaTime;
+            if (temporizador <= 0)
+            {
+                CambiarEvento();
+                temporizador = duracionEvento;
+                delayEvento = duracionEvento * 0.33f;
+                esperandoEntreEventos = true;
+            }
         }
+        else
+        {
+            temporizadorEspera -= Time.deltaTime;
+            if(temporizadorEspera <= 0)
+            {
+                esperandoEntreEventos = false;
+                temporizadorEspera = tiempoEntreEventos;
+            }
+        }
+        
     }
 
     private void CambiarEvento()
@@ -43,8 +62,8 @@ public class EventManager : TemporalSingleton<EventManager>
         {
             MothSpawner.Instance.SpawnMoth();
         }
-
-        duracionEvento *= (1 - porcentajeAumentoFrecuenciaPorEvento * 0.01f);
+        tiempoEntreEventos *= (1 - porcentajeAumentoFrecuenciaPorEvento * 0.01f);
+        duracionEvento *= Mathf.Max(tiempoMinimo, (1 - porcentajeAumentoFrecuenciaPorEvento * 0.01f));
         int aux = eventoActual;
         while (eventoActual == aux)
         {

@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 825914495}
   - component: {fileID: 825914497}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,8 +585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duracionEvento: 3
+  tiempoEntreEventos: 2
   frecuenciaAparicionPolilla: 2
-  porcentajeAumentoFrecuenciaPorEvento: 10
+  porcentajeAumentoFrecuenciaPorEvento: 3
 --- !u!1 &1014037645
 GameObject:
   m_ObjectHideFlags: 0
