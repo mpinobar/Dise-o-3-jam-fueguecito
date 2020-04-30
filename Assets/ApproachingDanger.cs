@@ -13,6 +13,10 @@ public class ApproachingDanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(candle == null)
+        {
+            candle = GameObject.FindGameObjectWithTag("Candle").transform;
+        }
         speed += acceleration * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, candle.position, speed * Time.deltaTime);
     }

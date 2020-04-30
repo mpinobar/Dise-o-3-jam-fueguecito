@@ -23,6 +23,7 @@ public class Wind : ApproachingDanger
     {
         if(collision.tag == "Cursor")
         {
+            print(Mathf.Abs(collision.GetComponent<Cursor>().velocity.y));
             abanico.transform.position = collision.transform.position;
             currentHP -= Mathf.Abs(collision.GetComponent<Cursor>().velocity.y) * (1 - (armadura * 0.01f));
             if(currentHP > 0)

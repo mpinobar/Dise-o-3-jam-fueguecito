@@ -104,7 +104,7 @@ MonoBehaviour:
   puntos: 25
   damageToCandle: 10
   windHP: 100
-  armadura: 75
+  armadura: 90
   currentHP: 0
 --- !u!50 &6056202223214300669
 Rigidbody2D:
