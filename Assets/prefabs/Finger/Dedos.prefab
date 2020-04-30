@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1966723201561576831}
   - component: {fileID: 1966723201561576828}
   - component: {fileID: 689159268550364641}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Dedos
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -162,6 +162,9 @@ MonoBehaviour:
   m_damage: 0
   m_color: {r: 0.4811321, g: 0.42955926, b: 0.39716092, a: 1}
   m_red: {r: 0.8584906, g: 0.34420612, b: 0.34420612, a: 1}
+  m_layers:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!82 &689159268550364641
 AudioSource:
   m_ObjectHideFlags: 0

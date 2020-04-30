@@ -80,6 +80,12 @@ public class RainScript : TemporalSingleton<RainScript>
 		m_rainDuration = duration;
 	}
 
+	public void StopRain()
+	{
+		m_currentSate = CloudState.MovingUp;
+		ps.Stop();
+	}
+
     public void OnParticleCollision(GameObject other)
     {
         if (other.gameObject.GetComponent<ProtectionFromRain>() != null)
