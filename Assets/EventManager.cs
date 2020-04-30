@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EventManager : TemporalSingleton<EventManager>
 {
-    [SerializeField] float duracionEvento;
-
+    [SerializeField] float duracionEvento = 3;
+    [SerializeField] int frecuenciaAparicionPolilla = 2;
+    [SerializeField] float decrementoDuracionPorCadaEvento = 0.2f;
     int numEvento;
     int eventoActual;
 
@@ -33,7 +34,18 @@ public class EventManager : TemporalSingleton<EventManager>
 
     private void CambiarEvento()
     {
+        
         numEvento++;
+        if (numEvento % frecuenciaAparicionPolilla == 0)
+        {
+            MothSpawner.Instance.SpawnMoth();
+        }
+        duracionEvento -= decrementoDuracionPorCadaEvento;
+        if (eventoActual == 0)
+        {
+            print(RainScript.Instance.name);
+            RainScript.Instance.StopSpawningRaing();
+        }
         int aux = eventoActual;
         while (eventoActual == aux)
         {
@@ -42,11 +54,13 @@ public class EventManager : TemporalSingleton<EventManager>
         switch (eventoActual)
         {
             case 0:
+                RainScript.Instance.SpawnRain();
                 break;
             case 1:
                 FingerSpawner.Instance.SpawnFinger(numEvento);
                 break;
             case 2:
+                Spawner.Instance.SpawnWind();
                 break;
         }
     }
