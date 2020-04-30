@@ -19,8 +19,11 @@ public class CandleBehaviour : TemporalSingleton<CandleBehaviour>
 	[SerializeField] private float m_scaleChangeSpeed = 0f;
 	private Vector3 m_maxLlamaScale = Vector3.zero;
 	private Vector3 m_currentLlamaScale = Vector3.zero;
-	// Start is called before the first frame update
-	public override void Awake()
+
+    public float LifePercentage { get => m_lifePercentage; set => m_lifePercentage = value; }
+
+    // Start is called before the first frame update
+    public override void Awake()
     {
 		base.Awake();
 		m_lifeDepleteRateAccelerationPerSecond = (m_maxLifeDepleteRatePerSecond - m_lifeDepleteRatePerSecond)/ (float)m_timeInSecondsToReachMaxDepeleteRate;

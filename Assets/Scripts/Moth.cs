@@ -35,20 +35,30 @@ public class Moth : MonoBehaviour
 				if (hit.collider.gameObject == this.gameObject)
 				{
 					m_grabbed = true;
+                    Cursor.grabbedMoth = this;
 				}
 			}
 		}
 
 		if (Input.GetMouseButtonUp(0))
 		{
+
+			
+            if(Cursor.grabbedMoth == this)
+            {
+                Cursor.grabbedMoth = null;
+            }
+
 			if (m_grabbed)
 			{
 				m_grabbed = false;
 
 				Collider2D[] hit = Physics2D.OverlapCircleAll(this.transform.position, m_radiusMothInteract);
 
+
 				for (int i = 0; i < hit.Length; i++)
-				{
+				{			
+
 					if (hit[i].gameObject.GetComponent<CandleBehaviour>() != null)
 					{
 						hit[i].gameObject.GetComponent<CandleBehaviour>().HealCandle(m_healAmmountToCandle);
@@ -73,6 +83,7 @@ public class Moth : MonoBehaviour
 						Destroy(this.gameObject);
 						break;
 					}
+
 				}
 			}
 		}

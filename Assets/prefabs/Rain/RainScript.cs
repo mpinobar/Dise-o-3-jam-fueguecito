@@ -90,14 +90,15 @@ public class RainScript : TemporalSingleton<RainScript>
     {
         if (other.gameObject.GetComponent<ProtectionFromRain>() != null)
         {
-            other.gameObject.GetComponent<ProtectionFromRain>().DealDamageToProtection(damagePerHit);
+            other.gameObject.GetComponent<ProtectionFromRain>().DealDamageToProtection(damagePerHit*0.5f);
+            Score.Instance.AñadirPuntos(puntos);
         }
         else if (other.gameObject.GetComponent<CandleBehaviour>() != null)
         {
             other.gameObject.GetComponent<CandleBehaviour>().DealDamageToCandle(damagePerHit);
         }
 
-        Score.Instance.AñadirPuntos(puntos);
+        
     }
     
 }
