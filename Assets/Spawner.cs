@@ -15,7 +15,7 @@ public class Spawner : TemporalSingleton<Spawner>
         candle = GameObject.FindGameObjectWithTag("Candle").transform;
     }
 	
-	public void SpawnWind()
+	public void SpawnWind(float delay, float duration)
 	{
 		int rand = Random.Range(0, prefabsToSpawn.Count);
 		GameObject i = Instantiate(prefabsToSpawn[rand], transform.position, Quaternion.identity);
