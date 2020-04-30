@@ -17,7 +17,11 @@ public class ApproachingDanger : MonoBehaviour
         {
             candle = GameObject.FindGameObjectWithTag("Candle").transform;
         }
-        speed += acceleration * Time.deltaTime;
+        //speed += acceleration * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, candle.position, speed * Time.deltaTime);
     }
+	public void ChangeSpeed(float newDuration)
+	{
+		speed = Vector3.Distance(this.transform.position, candle.position) / newDuration;
+	}
 }
