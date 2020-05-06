@@ -627,8 +627,8 @@ MonoBehaviour:
   duracionEvento: 3
   tiempoEntreEventos: 2
   frecuenciaAparicionPolilla: 1
-  porcentajeAumentoFrecuenciaPorEvento: 3
-  tiempoMinimo: 1
+  porcentajeAumentoFrecuenciaPorEvento: 5
+  tiempoMinimo: 0.5
 --- !u!1 &1014037645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 53155990, guid: e336e25e1c59146428e73c5a851b85bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 3.55
       objectReference: {fileID: 0}
     - target: {fileID: 53155991, guid: e336e25e1c59146428e73c5a851b85bd, type: 3}
       propertyPath: m_Enabled
@@ -1602,10 +1602,14 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 53155991, guid: e336e25e1c59146428e73c5a851b85bd, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 53155992, guid: e336e25e1c59146428e73c5a851b85bd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 988e165314871e7448a05e1f2826dd9e,
+      objectReference: {fileID: 21300000, guid: f7fe7b2f5cecaa84d995785100588e9a,
         type: 3}
     - target: {fileID: 53155992, guid: e336e25e1c59146428e73c5a851b85bd, type: 3}
       propertyPath: m_Color.r
