@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
+    public Transform vela;
     public Vector3 velocity;
     private Vector3 lastPosition;
     private float inverseTime;
@@ -108,15 +109,15 @@ public class Cursor : MonoBehaviour
     private Cuadrante ComprobarCuadrante()
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (pos.x >= 0 && pos.y >= 0)
+        if (pos.x >= vela.position.x && pos.y >= vela.position.y)
         {
             return Cuadrante.TopRight;
         }
-        else if (pos.x >= 0 && pos.y < 0)
+        else if (pos.x >= vela.position.x && pos.y < vela.position.y)
         {
             return Cuadrante.BottomRight;
         }
-        else if (pos.x < 0 && pos.y >= 0)
+        else if (pos.x < vela.position.x && pos.y >= vela.position.y)
         {
             return Cuadrante.TopLeft;
         }

@@ -98,7 +98,7 @@ public class RainScript : TemporalSingleton<RainScript>
             other.gameObject.GetComponent<CandleBehaviour>().DealDamageToCandle(damagePerHit);
         }
 
-        
+        GetComponent<AudioSource>().Play();
     }
     
 }
