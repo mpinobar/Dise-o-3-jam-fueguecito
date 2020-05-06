@@ -166,6 +166,8 @@ MonoBehaviour:
   m_layers:
     serializedVersion: 2
     m_Bits: 8192
+  m_prefabParticles: {fileID: 4439050854471368811, guid: ae7759ff7b84c594b9a6c5c483682aa0,
+    type: 3}
 --- !u!82 &689159268550364641
 AudioSource:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6e44a47c01f8bc946a3c44495eb43c24, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.512
   m_Pitch: 1
   Loop: 0
   Mute: 0

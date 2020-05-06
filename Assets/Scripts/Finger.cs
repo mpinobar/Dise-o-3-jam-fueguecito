@@ -24,6 +24,7 @@ public class Finger : MonoBehaviour
 	[SerializeField] private Color m_red = Color.red;
 
 	[SerializeField] private LayerMask m_layers;
+	[SerializeField] private GameObject m_prefabParticles = null;
 
 	private void Awake()
 	{
@@ -66,6 +67,9 @@ public class Finger : MonoBehaviour
 					if (!m_isBurnt)
 					{
 						m_currentLife = m_currentLife - 1;
+
+						GameObject ouchParticles = Instantiate(m_prefabParticles, hit.point, Quaternion.identity);
+
 						if (m_currentLife <= 0)
 						{
 							m_isBurnt = true;
