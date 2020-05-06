@@ -46,6 +46,11 @@ public class Score : TemporalSingleton<Score>
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+
         tiempo += Time.deltaTime;
         if (tiempo >= 1)
         {
@@ -68,6 +73,8 @@ public class Score : TemporalSingleton<Score>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    
 
     internal void GameEnd()
     {
